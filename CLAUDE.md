@@ -57,4 +57,9 @@ crispy-doom build in the psc catalog. Crispy Doom only - no Heretic/Hexen/Strife
   DLLs and the App's `SDL2_net.dll` on PATH): "Freedoom: Phase 1 - Crispy Doom 7.1.0" comes up.
 - **Build on the server**: sync with MSYS2's rsync (excluding `/build_*`, `/dist`), then
   `docker run --rm -u $(id -u):$(id -g) -v $PWD:/src -w /src ghcr.io/autobleem2/autobleem-build:develop ci/build.sh all`.
-- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist).
+- **Releases**: a `v<upstream>-<n>` tag (`v7.1-1`) builds a stable GitHub release with all 15 zips, in the
+  release image (`autobleem-build:latest` - its console SDL is 2.0.12, hence patch 0002); `master` follows
+  the released commit. The Store gets it by hand: `gh release download <tag>`, `tools/store_item.py` per zip,
+  then autobleem-repo's `repo_publish.sh store <key> dist/store/<key>/*`. v7.1-1 went to all five catalogs on
+  2026-09-25 (three items each), replacing the RetroBoot Doom on psc.
+- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist, section 12).
