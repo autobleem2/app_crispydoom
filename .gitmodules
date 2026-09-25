@@ -1,0 +1,6 @@
+[submodule "upstream/crispy-doom"]
+	path = upstream/crispy-doom
+	url = https://github.com/fabiangreffrath/crispy-doom.git
+[submodule "upstream/SDL_net"]
+	path = upstream/SDL_net
+	url = https://github.com/libsdl-org/SDL_net.git
