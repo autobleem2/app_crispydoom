@@ -223,14 +223,14 @@ check() { # check <key>: the program is the platform's, and needs nothing we do 
     case "$key" in
         psc)
             file "$stage/bin/psc/crispy-doom" | grep -q 'ELF 32-bit LSB.*ARM'
-            bash tools/check_psc_binary.sh "$stage/bin/psc/crispy-doom" "$PSC"
-            bash tools/check_psc_binary.sh "$stage/lib/psc/libSDL2_net-2.0.so.0" "$PSC" ;;
+            bash /opt/ab/tools/check_psc_binary.sh "$stage/bin/psc/crispy-doom" "$PSC"
+            bash /opt/ab/tools/check_psc_binary.sh "$stage/lib/psc/libSDL2_net-2.0.so.0" "$PSC" ;;
         rpi) file "$stage/bin/rpi/crispy-doom" | grep -q 'ELF 32-bit LSB.*ARM' ;;
         rpi64) file "$stage/bin/rpi64/crispy-doom" | grep -q 'ELF 64-bit LSB.*aarch64' ;;
         pcusb) file "$stage/bin/pcusb/crispy-doom" | grep -q 'ELF 32-bit LSB.*Intel 80386' ;;
         win) file "$stage/bin/win/crispy-doom.exe" | grep -q 'PE32+ executable.*x86-64' ;;
     esac
-    bash tools/check_needed.sh "$key" "$stage"
+    bash /opt/ab/tools/check_needed.sh "$key" "$stage"
 }
 
 build_native() {
