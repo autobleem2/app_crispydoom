@@ -62,4 +62,6 @@ crispy-doom build in the psc catalog. Crispy Doom only - no Heretic/Hexen/Strife
   the released commit. The Store gets it by hand: `gh release download <tag>`, `tools/store_item.py` per zip,
   then autobleem-repo's `repo_publish.sh store <key> dist/store/<key>/*`. v7.1-1 went to all five catalogs on
   2026-09-25 (three items each), replacing the RetroBoot Doom on psc.
-- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist, section 12).
+- **Not yet run**: on a console, a Pi or the PC stick (the tester checklist, section 12). An early build
+  (-1) was started on a console on 2026-09-25; the fault found there is fixed in -2 (`39cfc69`,
+  `joystick_guid`), which has not run on a console yet.
