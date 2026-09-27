@@ -43,7 +43,7 @@ crispy-doom build in the psc catalog. Crispy Doom only - no Heretic/Hexen/Strife
 | `ci/build.sh` | `native|psc|rpi|rpi64|pcusb|win|all`: the data from our mirror (sha256-pinned), SDL2_net by hand, Crispy's CMake with every SDL path given as a cache variable (`CMAKE_FIND_PACKAGE_PREFER_CONFIG=OFF`, so its own find modules make the targets and nothing is searched), `CMAKE_SKIP_RPATH` (CMake would otherwise embed the build machine's library paths - check_psc_binary.sh caught it), `--target crispy-doom` only |
 | `tools/make_icons.py` | draws each icon from its IWAD's `TITLEPIC` (PLAYPAL colours, stretched to 4:3, cropped to 256x219) - nothing of unknown origin |
 | `tools/store_item.py` | a package -> `dist/store/<key>/` with `<app>.item.json` and `<app>.png`, for autobleem-repo's `repo_publish.sh store <key> dist/store/<key>/*` |
-| `tools/check_psc_binary.sh`, `tools/check_needed.sh` | as in app_opentyrian (`shlwapi.dll` is a system DLL - Crispy imports it on Windows) |
+| `/opt/ab/tools/check_psc_binary.sh`, `/opt/ab/tools/check_needed.sh` (autobleem-build image) | no longer vendored (APPS-6) - as in app_opentyrian (`shlwapi.dll` is a system DLL - Crispy imports it on Windows) |
 
 ## Things to know
 
