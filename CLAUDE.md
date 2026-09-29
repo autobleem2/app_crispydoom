@@ -16,7 +16,8 @@ crispy-doom build in the psc catalog. Crispy Doom only - no Heretic/Hexen/Strife
 ## The owner's decisions for this port (2026-09-25)
 
 - **Patches over pinned submodules**: `upstream/crispy-doom` at `crispy-doom-7.1` (2025-09-23; it needs SDL
-  2.0.14, exactly the console's), `upstream/SDL_net` at `release-2.4.0`.
+  2.0.14 - the console's nightly SDL2 is now our own `autobleem_sdl` 2.0.18 (2026-09-29), ABI-compatible; the
+  stable release image is still upstream 2.0.12, hence patch 0002 below), `upstream/SDL_net` at `release-2.4.0`.
 - **SDL2_net is bundled** (`lib/<key>/`, netgames work); SDL2 and SDL2_mixer are the launcher's or the
   system's. PNG screenshots, libsamplerate and FluidSynth are switched off so nothing else needs shipping.
 - **The 2020 PSC layout**, in Crispy's gamepad mode (`use_gamepad 1`, an empty `joystick_guid` = the first
