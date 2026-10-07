@@ -63,6 +63,7 @@ def main(argv):
     item = {
         "id": "app/" + app,
         "kind": "app",
+        "category": "games",
         "title": item["title"],
         "version": version,
         "author": item["author"],

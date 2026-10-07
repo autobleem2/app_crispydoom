@@ -40,7 +40,7 @@ crispy-doom build in the psc catalog. Crispy Doom only - no Heretic/Hexen/Strife
 | `patches/crispy-doom/0002-sdl-2.0.12-is-enough.patch` | Crispy's CMake asks for SDL 2.0.14, but nothing newer than 2.0.12 is called; the release image (`autobleem-build:latest`, what a `v*` tag builds with) and the stable launcher still carry the console's older 2.0.12, so the check is lowered - the App runs on either |
 | `resources/common/default.cfg`, `crispy-doom.cfg` | the defaults every App ships - only the keys we set; Crispy fills in the rest and writes both files back in full on a clean exit. `default.cfg` holds the vanilla keys (`use_joystick`, `joyb_fire/use/speed/strafe/jump`, `screenblocks`), `crispy-doom.cfg` the extended ones (`use_gamepad`, `joystick_*`, `joyb_strafeleft/...`, video) - a key in the wrong file is ignored. **`joystick_guid` must not be empty**: `I_InitJoystick` returns before it looks at `use_gamepad` when it is (7.1-1 shipped `""` and no pad was opened at all - found on the console, 2026-09-25); it is the virtual pad's (the Xbox 360 GUID), and with `use_gamepad 1` Crispy falls back to the first gamepad when the GUID is another's (Windows). |
 | `resources/<app>/` | each App's `app.ini` (`Exec=bin/{key}/crispy-doom`, `Args=-iwad <wad> -config default.cfg -extraconfig crispy-doom.cfg -savedir savegames`, `Lib=lib/{key}`, `VirtualPad=true`), `readme.txt`, `icon.png` |
-| `VERSION` | the package version for all three (`7.1-2`) |
+| `VERSION` | the package version for all three (`7.1-3`) |
 | `ci/build.sh` | `native|psc|rpi|rpi64|pcusb|win|all`: the data from our mirror (sha256-pinned), SDL2_net by hand, Crispy's CMake with every SDL path given as a cache variable (`CMAKE_FIND_PACKAGE_PREFER_CONFIG=OFF`, so its own find modules make the targets and nothing is searched), `CMAKE_SKIP_RPATH` (CMake would otherwise embed the build machine's library paths - check_psc_binary.sh caught it), `--target crispy-doom` only |
 | `tools/make_icons.py` | draws each icon from its IWAD's `TITLEPIC` (PLAYPAL colours, stretched to 4:3, cropped to 256x219) - nothing of unknown origin |
 | `tools/store_item.py` | a package -> `dist/store/<key>/` with `<app>.item.json` and `<app>.png`, for autobleem-repo's `repo_publish.sh store <key> dist/store/<key>/*` |
@@ -58,6 +58,7 @@ crispy-doom build in the psc catalog. Crispy Doom only - no Heretic/Hexen/Strife
   DLLs and the App's `SDL2_net.dll` on PATH): "Freedoom: Phase 1 - Crispy Doom 7.1.0" comes up.
 - **Build on the server**: sync with MSYS2's rsync (excluding `/build_*`, `/dist`), then
   `docker run --rm -u $(id -u):$(id -g) -v $PWD:/src -w /src ghcr.io/autobleem2/autobleem-build:develop ci/build.sh all`.
+- **Category** (the owner, 2026-10-07): every `app.ini` carries `Category=games` (the launcher's Apps tab files an App by it: games, emulators, tools, media, other - any case) and `tools/store_item.py` writes `"category": "games"` into the Store item.
 - **Releases**: a `v<upstream>-<n>` tag (`v7.1-1`) builds a stable GitHub release with all 15 zips, in the
   release image (`autobleem-build:latest` - its console SDL is 2.0.12, hence patch 0002); `master` follows
   the released commit. The Store gets it by hand: `gh release download <tag>`, `tools/store_item.py` per zip,
